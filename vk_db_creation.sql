@@ -102,4 +102,52 @@ CREATE TABLE likes(
     to_subject_id BIGINT UNSIGNED NOT NULL,
     `subject_type` ENUM('user', 'post', 'video', 'message'),
     created_at DATETIME DEFAULT NOW()
+    -- забыли внешние ключи: user_id, to_subject_id
+);
+
+DROP TABLE IF EXISTS `photo_albums`;
+CREATE TABLE `photo_albums` (
+	`id` SERIAL,
+	`name` varchar(255) DEFAULT NULL,
+    `user_id` BIGINT UNSIGNED DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+  PRIMARY KEY (`id`)
+);
+
+DROP TABLE IF EXISTS `album_photos`;
+CREATE TABLE `album_photos` (
+	`album_id` BIGINT unsigned NOT NULL,
+	`media_id` BIGINT unsigned NOT NULL,
+    FOREIGN KEY (album_id) REFERENCES photo_albums(id),
+    FOREIGN KEY (media_id) REFERENCES media(id)
+);
+
+CREATE TABLE `subject_types` (
+  `id` bigint unsigned NOT NULL auto_increment,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+);
+
+CREATE TABLE `subjects` (
+  	`id` bigint unsigned NOT NULL AUTO_INCREMENT,
+    `subject_type_id` BIGINT UNSIGNED DEFAULT NULL,
+  	`name` varchar(255) DEFAULT NULL,
+  	`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  	`updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  	PRIMARY KEY (`id`),
+  	UNIQUE KEY `id` (`id`),
+    FOREIGN KEY (subject_type_id) REFERENCES subject_types(id)
+);
+
+CREATE TABLE `news` (
+  	`id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  	`user_id` bigint unsigned NOT NULL,
+  	`to_subject_id` bigint unsigned NOT NULL,
+  	`body` text,
+  	`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  	PRIMARY KEY (`id`),
+    FOREIGN KEY (to_subject_id) REFERENCES subjects(id)
 );
