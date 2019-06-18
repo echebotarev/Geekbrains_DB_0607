@@ -4,12 +4,11 @@ USE vk;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
--- SERIAL = BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
-	id SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY, -- SERIAL = BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
     firstname VARCHAR(50),
-    lastname VARCHAR(50) COMMENT 'Р¤Р°РјРёР»СЊ',
+    lastname VARCHAR(50) COMMENT 'Фамиль',
     email VARCHAR(120) UNIQUE,
-    phone INT, 
+    phone BIGINT, 
     INDEX users_phone_idx(phone),
     INDEX users_firstname_lastname_idx(firstname, lastname)
 );
@@ -19,12 +18,11 @@ CREATE TABLE `profiles` (
 	user_id SERIAL PRIMARY KEY,
     gender CHAR(1),
     birthday DATE,
+	photo_id BIGINT UNSIGNED NOT NULL,
     created_at DATETIME DEFAULT NOW(),
     hometown VARCHAR(100),
-    FOREIGN KEY (user_id)
-    REFERENCES users(id)
-    ON UPDATE CASCADE
-    ON DELETE RESTRICT
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE restrict,
+    FOREIGN KEY (photo_id) REFERENCES photos(id)
 );
 
 DROP TABLE IF EXISTS messages;
@@ -42,7 +40,7 @@ CREATE TABLE messages (
 
 DROP TABLE IF EXISTS friend_requests;
 CREATE TABLE friend_requests (
-	-- id SERIAL PRIMARY KEY,
+	-- id SERIAL PRIMARY KEY, -- changed to combined primary key (initiator_user_id, target_user_id)
 	initiator_user_id BIGINT UNSIGNED NOT NULL,
     target_user_id BIGINT UNSIGNED NOT NULL,
     -- `status` TINYINT UNSIGNED,
@@ -84,13 +82,13 @@ CREATE TABLE media(
 	id SERIAL PRIMARY KEY,
     media_type_id BIGINT UNSIGNED NOT NULL,
     user_id BIGINT UNSIGNED NOT NULL,
+  	body text,
     filename VARCHAR(255),
     size INT,
 	metadata JSON,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	INDEX (user_id),
-    -- INDEX(media_type_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (media_type_id) REFERENCES media_types(id)
 );
@@ -99,10 +97,9 @@ DROP TABLE IF EXISTS likes;
 CREATE TABLE likes(
 	id SERIAL PRIMARY KEY,
     user_id BIGINT UNSIGNED NOT NULL,
-    to_subject_id BIGINT UNSIGNED NOT NULL,
-    `subject_type` ENUM('user', 'post', 'video', 'message'),
+    media_id BIGINT UNSIGNED NOT NULL,
     created_at DATETIME DEFAULT NOW()
-    -- забыли внешние ключи: user_id, to_subject_id
+    -- забыли внешние ключи: user_id, media_id
 );
 
 DROP TABLE IF EXISTS `photo_albums`;
@@ -114,40 +111,11 @@ CREATE TABLE `photo_albums` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `album_photos`;
-CREATE TABLE `album_photos` (
+DROP TABLE IF EXISTS `photos`;
+CREATE TABLE `photos` (
+	id SERIAL PRIMARY KEY,
 	`album_id` BIGINT unsigned NOT NULL,
 	`media_id` BIGINT unsigned NOT NULL,
     FOREIGN KEY (album_id) REFERENCES photo_albums(id),
     FOREIGN KEY (media_id) REFERENCES media(id)
-);
-
-CREATE TABLE `subject_types` (
-  `id` bigint unsigned NOT NULL auto_increment,
-  `name` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-);
-
-CREATE TABLE `subjects` (
-  	`id` bigint unsigned NOT NULL AUTO_INCREMENT,
-    `subject_type_id` BIGINT UNSIGNED DEFAULT NULL,
-  	`name` varchar(255) DEFAULT NULL,
-  	`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  	`updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  	PRIMARY KEY (`id`),
-  	UNIQUE KEY `id` (`id`),
-    FOREIGN KEY (subject_type_id) REFERENCES subject_types(id)
-);
-
-CREATE TABLE `news` (
-  	`id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  	`user_id` bigint unsigned NOT NULL,
-  	`to_subject_id` bigint unsigned NOT NULL,
-  	`body` text,
-  	`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  	PRIMARY KEY (`id`),
-    FOREIGN KEY (to_subject_id) REFERENCES subjects(id)
 );
