@@ -22,7 +22,8 @@ CREATE TABLE `profiles` (
     created_at DATETIME DEFAULT NOW(),
     hometown VARCHAR(100),
     FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE restrict,
-    FOREIGN KEY (photo_id) REFERENCES photos(id)
+	FOREIGN KEY (photo_id) REFERENCES media(id)
+
 );
 
 DROP TABLE IF EXISTS messages;
@@ -100,22 +101,4 @@ CREATE TABLE likes(
     media_id BIGINT UNSIGNED NOT NULL,
     created_at DATETIME DEFAULT NOW()
     -- забыли внешние ключи: user_id, media_id
-);
-
-DROP TABLE IF EXISTS `photo_albums`;
-CREATE TABLE `photo_albums` (
-	`id` SERIAL,
-	`name` varchar(255) DEFAULT NULL,
-    `user_id` BIGINT UNSIGNED DEFAULT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-  PRIMARY KEY (`id`)
-);
-
-DROP TABLE IF EXISTS `photos`;
-CREATE TABLE `photos` (
-	id SERIAL PRIMARY KEY,
-	`album_id` BIGINT unsigned DEFAULT NULL,
-	`media_id` BIGINT unsigned NOT NULL,
-    FOREIGN KEY (album_id) REFERENCES photo_albums(id),
-    FOREIGN KEY (media_id) REFERENCES media(id)
 );
