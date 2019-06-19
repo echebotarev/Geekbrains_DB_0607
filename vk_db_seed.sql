@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY, -- SERIAL = BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
     firstname VARCHAR(50),
-    lastname VARCHAR(50) COMMENT 'Фамиль',
+    lastname VARCHAR(50) COMMENT 'пїЅпїЅпїЅпїЅпїЅпїЅ',
     email VARCHAR(120) UNIQUE,
     phone BIGINT, 
     INDEX users_phone_idx(phone),
@@ -126,13 +126,14 @@ CREATE TABLE messages (
     FOREIGN KEY (from_user_id) REFERENCES users(id),
     FOREIGN KEY (to_user_id) REFERENCES users(id)
 );
-INSERT INTO `messages` VALUES ('1','1','1','Voluptatem ut quaerat quia. Pariatur esse amet ratione qui quia. In necessitatibus reprehenderit et. Nam accusantium aut qui quae nesciunt non.','1995-08-28 22:44:29'),
-('2','2','2','Sint dolores et debitis est ducimus. Aut et quia beatae minus. Ipsa rerum totam modi sunt sed. Voluptas atque eum et odio ea molestias ipsam architecto.','1973-03-18 12:18:28'),
-('3','3','3','Sed mollitia quo sequi nisi est tenetur at rerum. Sed quibusdam illo ea facilis nemo sequi. Et tempora repudiandae saepe quo.','1993-09-14 19:45:58'),
-('4','4','4','Quod dicta omnis placeat id et officiis et. Beatae enim aut aliquid neque occaecati odit. Facere eum distinctio assumenda omnis est delectus magnam.','1985-11-25 16:56:25'),
-('5','5','5','Voluptas omnis enim quia porro debitis facilis eaque ut. Id inventore non corrupti doloremque consequuntur. Molestiae molestiae deleniti exercitationem sunt qui ea accusamus deserunt.','1999-09-19 04:35:46'),
-('6','6','6','Rerum labore culpa et laboriosam eum totam. Quidem pariatur sit alias. Atque doloribus ratione eum rem dolor vitae saepe.','1973-11-09 08:12:04'),
-('7','7','7','Perspiciatis temporibus doloribus debitis. Et inventore labore eos modi. Quo temporibus corporis minus. Accusamus aspernatur nihil nobis placeat molestiae et commodi eaque.','1998-04-09 00:00:26'),
+INSERT INTO `messages` VALUES 
+('1','1','2','Voluptatem ut quaerat quia. Pariatur esse amet ratione qui quia. In necessitatibus reprehenderit et. Nam accusantium aut qui quae nesciunt non.','1995-08-28 22:44:29'),
+('2','2','1','Sint dolores et debitis est ducimus. Aut et quia beatae minus. Ipsa rerum totam modi sunt sed. Voluptas atque eum et odio ea molestias ipsam architecto.',now()),
+('3','3','1','Sed mollitia quo sequi nisi est tenetur at rerum. Sed quibusdam illo ea facilis nemo sequi. Et tempora repudiandae saepe quo.','1993-09-14 19:45:58'),
+('4','1','3','Quod dicta omnis placeat id et officiis et. Beatae enim aut aliquid neque occaecati odit. Facere eum distinctio assumenda omnis est delectus magnam.','1985-11-25 16:56:25'),
+('5','1','5','Voluptas omnis enim quia porro debitis facilis eaque ut. Id inventore non corrupti doloremque consequuntur. Molestiae molestiae deleniti exercitationem sunt qui ea accusamus deserunt.','1999-09-19 04:35:46'),
+('6','1','6','Rerum labore culpa et laboriosam eum totam. Quidem pariatur sit alias. Atque doloribus ratione eum rem dolor vitae saepe.','1973-11-09 08:12:04'),
+('7','1','7','Perspiciatis temporibus doloribus debitis. Et inventore labore eos modi. Quo temporibus corporis minus. Accusamus aspernatur nihil nobis placeat molestiae et commodi eaque.','1998-04-09 00:00:26'),
 ('8','8','8','Suscipit dolore voluptas et sit vero et sint. Rem ut ratione voluptatum assumenda nesciunt ea. Quas qui qui atque ut. Similique et praesentium non voluptate iure. Eum aperiam officia quia dolorem.','2005-08-20 18:40:27'),
 ('9','9','9','Et quia libero aut vitae minus. Rerum a blanditiis debitis sit nam. Veniam quasi aut autem ratione dolorem. Sunt quo similique dolorem odit totam sint sed.','2013-03-19 04:10:10'),
 ('10','10','10','Praesentium molestias quia aut odio. Est quis eius ut animi optio molestiae. Amet tempore sequi blanditiis in est.','1976-05-22 14:38:15'),
@@ -242,106 +243,63 @@ CREATE TABLE friend_requests (
     FOREIGN KEY (initiator_user_id) REFERENCES users(id),
     FOREIGN KEY (target_user_id) REFERENCES users(id)
 );
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('1', '1', 'approved', '1970-08-21 06:40:37', '2003-12-29 23:20:55');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('2', '2', 'requested', '1987-10-10 07:33:23', '1983-01-18 01:56:05');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('3', '3', 'requested', '2015-02-07 01:53:07', '2015-09-14 16:17:12');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('4', '4', 'requested', '1983-04-08 15:57:26', '1976-12-28 23:54:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('5', '5', 'unfriended', '1976-03-03 18:22:00', '1996-12-03 11:29:04');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('6', '6', 'unfriended', '2008-12-06 17:07:59', '2015-11-01 08:03:23');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('7', '7', 'requested', '1989-10-26 06:20:23', '2001-08-05 16:01:03');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('8', '8', 'unfriended', '1987-12-30 01:50:03', '2001-07-09 07:39:50');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('9', '9', 'requested', '2003-12-27 22:52:09', '1998-04-18 04:41:46');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('10', '10', 'declined', '1970-05-08 00:32:15', '2007-03-22 21:08:16');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('11', '11', 'approved', '1988-05-02 10:55:41', '1985-02-09 05:04:27');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('12', '12', 'unfriended', '1975-07-25 20:11:02', '1993-06-30 12:51:09');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('13', '13', 'declined', '2000-06-24 13:17:54', '1982-04-16 16:12:48');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('14', '14', 'declined', '2007-12-09 17:17:48', '1991-05-31 12:38:33');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('15', '15', 'unfriended', '2016-07-21 20:48:02', '1982-10-06 14:54:41');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('16', '16', 'requested', '1992-10-04 04:16:38', '2001-01-24 13:54:16');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('17', '17', 'approved', '1984-11-20 10:33:06', '2018-10-07 19:43:11');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('18', '18', 'approved', '1992-07-31 16:34:16', '2008-08-03 10:13:44');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('19', '19', 'requested', '1993-06-18 14:21:32', '1976-01-16 15:57:24');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('20', '20', 'declined', '2007-03-22 18:13:14', '2010-01-06 00:06:18');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('21', '21', 'requested', '2015-09-17 12:10:37', '1986-06-30 22:29:41');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('22', '22', 'approved', '2004-09-21 23:23:19', '2003-01-27 16:11:05');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('23', '23', 'requested', '1972-04-26 20:13:41', '1991-01-03 06:58:39');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('24', '24', 'unfriended', '2017-08-08 05:38:20', '2007-09-27 03:07:27');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('25', '25', 'approved', '2001-01-16 08:07:31', '1995-04-25 06:23:27');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('26', '26', 'declined', '2004-07-31 10:12:37', '2001-06-28 18:49:10');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('27', '27', 'declined', '2004-11-01 19:13:46', '1978-05-16 19:08:26');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('28', '28', 'requested', '1989-07-10 17:02:49', '2007-03-16 20:42:05');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('29', '29', 'unfriended', '1984-08-12 11:38:13', '1971-07-07 10:40:59');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('30', '30', 'unfriended', '1997-03-01 23:22:31', '1974-08-30 23:16:26');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('31', '31', 'approved', '2003-02-19 05:45:39', '2015-02-04 15:26:16');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('32', '32', 'declined', '2017-01-08 12:24:37', '2019-02-23 04:25:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('33', '33', 'requested', '2018-08-15 10:50:34', '1984-08-24 14:00:01');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('34', '34', 'unfriended', '1988-06-12 03:29:45', '1998-11-28 12:07:32');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('35', '35', 'unfriended', '1988-01-30 09:10:41', '2004-06-02 14:04:53');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('36', '36', 'declined', '1993-03-10 12:19:15', '2007-05-17 03:24:16');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('37', '37', 'requested', '1999-06-21 09:26:23', '2011-08-28 05:29:49');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('38', '38', 'requested', '1977-03-14 20:26:41', '1975-09-03 17:01:54');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('39', '39', 'approved', '2017-09-08 20:11:20', '1989-12-10 18:38:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('40', '40', 'approved', '2001-08-16 04:34:33', '1999-01-01 14:33:52');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('41', '41', 'unfriended', '1982-07-18 15:48:44', '1989-10-14 05:48:07');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('42', '42', 'requested', '1973-10-29 10:38:00', '1973-11-02 18:26:40');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('43', '43', 'requested', '1979-12-17 11:27:04', '2004-09-28 04:54:42');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('44', '44', 'approved', '2013-10-01 07:28:04', '2006-12-12 05:43:06');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('45', '45', 'requested', '2011-07-27 12:46:23', '1988-05-07 21:59:11');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('46', '46', 'declined', '1999-11-13 00:33:38', '2016-05-02 19:19:15');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('47', '47', 'approved', '1980-03-02 03:50:22', '2010-09-22 18:58:47');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('48', '48', 'requested', '2003-11-15 23:04:36', '1991-08-05 16:56:51');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('49', '49', 'approved', '2006-03-24 23:01:39', '2010-08-04 15:00:32');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('50', '50', 'approved', '2008-07-18 00:34:41', '2016-12-25 03:18:49');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('51', '51', 'approved', '2001-10-14 18:49:19', '2012-06-08 01:36:28');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('52', '52', 'requested', '2000-06-08 04:08:36', '2010-10-12 10:27:39');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('53', '53', 'approved', '1972-07-01 10:35:33', '1972-03-03 01:26:27');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('54', '54', 'declined', '2007-07-24 20:49:26', '2014-03-10 04:56:59');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('55', '55', 'approved', '1981-09-25 09:50:15', '1991-04-22 04:24:22');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('56', '56', 'approved', '2015-03-08 22:23:52', '1996-02-08 09:41:57');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('57', '57', 'declined', '2012-07-18 20:25:26', '2008-06-10 16:46:01');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('58', '58', 'declined', '1970-08-26 14:39:24', '2010-12-04 22:36:12');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('59', '59', 'unfriended', '1982-12-03 07:57:43', '1992-11-21 14:42:00');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('60', '60', 'declined', '2003-03-28 09:11:22', '1984-10-22 00:34:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('61', '61', 'declined', '1999-07-10 23:11:51', '2016-11-13 17:37:38');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('62', '62', 'requested', '2003-01-28 02:05:26', '2007-04-05 08:23:12');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('63', '63', 'approved', '2004-02-02 18:43:03', '2011-01-21 02:56:34');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('64', '64', 'requested', '1988-01-09 02:49:57', '2008-01-20 12:16:32');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('65', '65', 'requested', '1985-02-18 21:49:13', '1997-05-05 19:51:35');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('66', '66', 'unfriended', '2003-03-12 23:37:48', '1981-06-02 18:57:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('67', '67', 'approved', '1987-04-29 03:09:14', '1981-04-22 22:37:00');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('68', '68', 'unfriended', '1973-03-24 00:49:50', '1970-09-26 11:43:50');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('69', '69', 'requested', '1992-12-20 08:26:38', '1976-04-04 09:45:20');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('70', '70', 'approved', '2006-05-10 10:11:35', '2003-04-21 05:25:00');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('71', '71', 'declined', '1990-03-23 11:25:43', '1976-04-17 18:02:41');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('72', '72', 'approved', '2009-05-31 10:51:20', '1994-09-30 13:31:10');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('73', '73', 'approved', '2005-02-04 20:33:02', '1971-09-23 14:35:57');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('74', '74', 'approved', '1986-09-13 08:48:49', '1988-12-02 16:21:38');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('75', '75', 'unfriended', '1989-02-06 16:18:25', '1976-05-24 22:04:37');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('76', '76', 'approved', '1993-08-02 16:15:43', '1999-11-26 10:51:17');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('77', '77', 'requested', '2004-11-21 21:28:50', '2004-04-23 05:17:42');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('78', '78', 'approved', '2012-12-11 06:36:18', '1980-10-24 16:32:22');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('79', '79', 'requested', '1986-08-30 22:54:34', '2016-01-01 06:31:29');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('80', '80', 'declined', '2007-05-29 23:21:09', '1992-09-03 17:16:53');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('81', '81', 'requested', '1976-02-15 09:53:51', '2004-12-08 14:47:08');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('82', '82', 'declined', '1999-05-17 08:04:49', '2019-03-22 06:34:06');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('83', '83', 'declined', '2010-02-24 05:14:27', '1972-08-06 04:29:05');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('84', '84', 'approved', '1992-04-26 10:05:19', '2017-09-27 15:43:41');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('85', '85', 'declined', '2002-12-25 19:06:54', '2019-01-09 02:28:17');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('86', '86', 'unfriended', '1994-12-11 13:04:17', '2010-12-04 16:48:56');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('87', '87', 'unfriended', '1974-12-20 22:49:43', '1998-10-02 10:34:13');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('88', '88', 'declined', '1975-03-30 09:04:32', '2016-12-29 12:20:58');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('89', '89', 'requested', '2014-08-19 07:08:27', '2016-05-31 21:29:04');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('90', '90', 'unfriended', '1974-04-01 05:16:29', '2014-06-07 13:46:11');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('91', '91', 'declined', '2007-03-29 05:19:59', '1985-01-03 07:56:35');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('92', '92', 'approved', '1999-08-21 23:14:35', '1977-12-06 05:11:59');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('93', '93', 'declined', '2004-10-02 22:42:42', '1982-04-06 07:11:36');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('94', '94', 'approved', '2010-01-27 13:47:32', '2010-11-28 12:28:30');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('95', '95', 'declined', '1982-10-21 11:22:05', '2007-11-01 23:06:50');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('96', '96', 'unfriended', '1973-07-23 11:16:46', '2014-03-26 18:21:48');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('97', '97', 'declined', '1975-12-28 08:09:37', '2004-05-24 01:22:07');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('98', '98', 'requested', '2018-12-11 00:54:59', '1980-07-11 05:38:28');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('99', '99', 'declined', '1989-11-01 20:02:13', '1999-01-27 21:54:35');
-INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('100', '100', 'requested', '1974-06-17 05:16:27', '1979-07-25 04:56:27');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('1', '10', 'approved', '1970-08-21 06:40:37', '2003-12-29 23:20:55');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('1', '2', 'requested', '1987-10-10 07:33:23', '1983-01-18 01:56:05');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('1', '3', 'approved', '2015-02-07 01:53:07', '2015-09-14 16:17:12');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('4', '1', 'approved', '1983-04-08 15:57:26', '1976-12-28 23:54:58');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('5', '2', 'unfriended', '1976-03-03 18:22:00', '1996-12-03 11:29:04');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('6', '3', 'unfriended', '2008-12-06 17:07:59', '2015-11-01 08:03:23');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('7', '1', 'requested', '1989-10-26 06:20:23', '2001-08-05 16:01:03');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('8', '6', 'unfriended', '1987-12-30 01:50:03', '2001-07-09 07:39:50');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('9', '7', 'requested', '2003-12-27 22:52:09', '1998-04-18 04:41:46');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('10', '11', 'declined', '1970-05-08 00:32:15', '2007-03-22 21:08:16');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('11', '14', 'approved', '1988-05-02 10:55:41', '1985-02-09 05:04:27');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('12', '11', 'unfriended', '1975-07-25 20:11:02', '1993-06-30 12:51:09');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('13', '33', 'declined', '2000-06-24 13:17:54', '1982-04-16 16:12:48');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('14', '24', 'declined', '2007-12-09 17:17:48', '1991-05-31 12:38:33');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('15', '35', 'unfriended', '2016-07-21 20:48:02', '1982-10-06 14:54:41');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('16', '36', 'requested', '1992-10-04 04:16:38', '2001-01-24 13:54:16');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('17', '37', 'approved', '1984-11-20 10:33:06', '2018-10-07 19:43:11');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('18', '38', 'approved', '1992-07-31 16:34:16', '2008-08-03 10:13:44');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('19', '39', 'requested', '1993-06-18 14:21:32', '1976-01-16 15:57:24');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('20', '30', 'declined', '2007-03-22 18:13:14', '2010-01-06 00:06:18');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('21', '31', 'requested', '2015-09-17 12:10:37', '1986-06-30 22:29:41');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('22', '32', 'approved', '2004-09-21 23:23:19', '2003-01-27 16:11:05');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('23', '33', 'requested', '1972-04-26 20:13:41', '1991-01-03 06:58:39');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('24', '34', 'unfriended', '2017-08-08 05:38:20', '2007-09-27 03:07:27');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('25', '35', 'approved', '2001-01-16 08:07:31', '1995-04-25 06:23:27');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('26', '36', 'declined', '2004-07-31 10:12:37', '2001-06-28 18:49:10');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('27', '37', 'declined', '2004-11-01 19:13:46', '1978-05-16 19:08:26');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('28', '38', 'requested', '1989-07-10 17:02:49', '2007-03-16 20:42:05');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('29', '39', 'unfriended', '1984-08-12 11:38:13', '1971-07-07 10:40:59');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('30', '10', 'unfriended', '1997-03-01 23:22:31', '1974-08-30 23:16:26');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('31', '11', 'approved', '2003-02-19 05:45:39', '2015-02-04 15:26:16');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('32', '12', 'declined', '2017-01-08 12:24:37', '2019-02-23 04:25:58');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('33', '13', 'requested', '2018-08-15 10:50:34', '1984-08-24 14:00:01');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('34', '14', 'unfriended', '1988-06-12 03:29:45', '1998-11-28 12:07:32');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('35', '15', 'unfriended', '1988-01-30 09:10:41', '2004-06-02 14:04:53');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('36', '16', 'declined', '1993-03-10 12:19:15', '2007-05-17 03:24:16');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('37', '17', 'requested', '1999-06-21 09:26:23', '2011-08-28 05:29:49');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('38', '18', 'requested', '1977-03-14 20:26:41', '1975-09-03 17:01:54');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('39', '19', 'approved', '2017-09-08 20:11:20', '1989-12-10 18:38:58');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('40', '10', 'approved', '2001-08-16 04:34:33', '1999-01-01 14:33:52');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('41', '11', 'unfriended', '1982-07-18 15:48:44', '1989-10-14 05:48:07');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('42', '12', 'requested', '1973-10-29 10:38:00', '1973-11-02 18:26:40');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('43', '13', 'requested', '1979-12-17 11:27:04', '2004-09-28 04:54:42');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('44', '14', 'approved', '2013-10-01 07:28:04', '2006-12-12 05:43:06');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('45', '15', 'requested', '2011-07-27 12:46:23', '1988-05-07 21:59:11');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('46', '16', 'declined', '1999-11-13 00:33:38', '2016-05-02 19:19:15');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('47', '17', 'approved', '1980-03-02 03:50:22', '2010-09-22 18:58:47');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('48', '18', 'requested', '2003-11-15 23:04:36', '1991-08-05 16:56:51');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('49', '19', 'approved', '2006-03-24 23:01:39', '2010-08-04 15:00:32');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('50', '10', 'approved', '2008-07-18 00:34:41', '2016-12-25 03:18:49');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('51', '11', 'approved', '2001-10-14 18:49:19', '2012-06-08 01:36:28');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('52', '12', 'requested', '2000-06-08 04:08:36', '2010-10-12 10:27:39');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('53', '13', 'approved', '1972-07-01 10:35:33', '1972-03-03 01:26:27');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('54', '14', 'declined', '2007-07-24 20:49:26', '2014-03-10 04:56:59');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('55', '15', 'approved', '1981-09-25 09:50:15', '1991-04-22 04:24:22');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('56', '16', 'approved', '2015-03-08 22:23:52', '1996-02-08 09:41:57');
+INSERT INTO `friend_requests` (`initiator_user_id`, `target_user_id`, `status`, `requested_at`, `confirmed_at`) VALUES ('57', '17', 'declined', '2012-07-18 20:25:26', '2008-06-10 16:46:01');
 
 
 DROP TABLE IF EXISTS communities;
@@ -492,106 +450,126 @@ CREATE TABLE media(
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (media_type_id) REFERENCES media_types(id)
 );
-INSERT INTO `media` VALUES ('1','1','1','Est aut aliquid est. Soluta eveniet doloribus ipsam ut id assumenda quam. Consequuntur et velit aperiam error corporis rem corporis. Est similique quisquam quia maxime eaque possimus facere officiis. Odio magni atque dicta voluptatibus hic iste delectus.','a','5',NULL,'1991-11-16 03:14:38','2014-12-23 03:58:10'),
-('2','2','2','Laborum dolorem magni unde vero sit hic. Pariatur quia voluptas magnam. Blanditiis dolorem et molestias veniam facere provident.','asperiores','4510',NULL,'1986-12-10 13:34:26','1974-09-26 02:38:00'),
-('3','3','3','A quam ea ullam reiciendis vel et reiciendis. Delectus iure mollitia est. Eum dolores dolores sed officia vitae qui. Sed repudiandae voluptatem voluptatibus libero culpa quo.','sapiente','763116',NULL,'1978-09-18 11:07:49','1998-02-28 08:22:30'),
-('4','4','4','Velit commodi in veniam occaecati. Tenetur temporibus ullam enim officiis aut illum. In maiores velit nobis soluta molestias maiores tempora. Quisquam et ut et sequi.','rerum','740',NULL,'1984-10-20 22:41:15','1991-12-03 09:02:18'),
-('5','1','5','Est eaque est qui et omnis rerum. Expedita porro nesciunt inventore consequatur quos. Inventore aut rerum voluptas. Dicta vel ut quibusdam cupiditate tempore.','a','40813',NULL,'2014-06-19 20:34:11','2018-07-31 05:33:40'),
-('6','2','6','Atque et nam nulla et aliquid. Vel repellendus aut natus odit quibusdam quis atque et. Laudantium minima velit dolores eos voluptate nostrum.','quasi','119422',NULL,'1991-11-02 02:50:45','1989-10-17 17:18:29'),
-('7','3','7','Nihil ut et reprehenderit et. Numquam veniam quis impedit. Voluptas saepe rerum illo vel omnis. Aliquam illum ut quo saepe ea unde est.','non','704558',NULL,'1988-09-17 13:56:38','1990-06-04 02:08:33'),
-('8','4','8','Sint quod fugit molestiae dolore repellendus est. Quis corporis necessitatibus commodi placeat temporibus doloremque voluptatem. Nemo maxime sit dolorem perferendis repellat. Et impedit deleniti eaque pariatur ut quia voluptatibus.','earum','65108',NULL,'1995-10-07 04:19:53','2015-07-11 18:56:19'),
-('9','1','9','Optio sed aperiam veniam eum. Rerum placeat soluta iusto perspiciatis quibusdam dolorem eos. Ea pariatur optio est ut.','ullam','83717449',NULL,'2003-08-04 22:55:25','1993-09-12 03:53:11'),
-('10','2','10','Facere nostrum facilis aperiam quisquam dolor. Minima omnis est nam.','maiores','75',NULL,'1984-05-17 00:37:30','1972-08-12 20:05:34'),
-('11','3','11','A omnis ratione non. Et velit sed incidunt corporis ut rerum nemo. Ut pariatur tempora ea incidunt praesentium ut. Eligendi et et rerum sequi ut.','non','0',NULL,'2010-05-07 12:13:09','2017-09-18 08:30:28'),
-('12','4','12','Quo minus harum debitis debitis quis sunt. Dolores suscipit placeat dolorum non voluptate et. Non eos odio esse tempore. Illum minus quidem temporibus porro.','earum','1826766',NULL,'2013-08-25 15:49:45','1972-03-30 00:35:17'),
-('13','1','13','Et aliquid sit natus vitae fuga enim repudiandae. Quis ab et debitis est accusantium labore. Exercitationem delectus eaque necessitatibus.','hic','979',NULL,'2015-11-01 18:11:31','2014-02-04 13:33:02'),
-('14','2','14','Nobis est sed blanditiis assumenda incidunt explicabo. Facere rem assumenda odio explicabo ad enim repellat quia. Dolor mollitia fugiat officia nihil animi.','iste','18',NULL,'2006-05-11 05:11:06','1978-05-27 14:48:33'),
-('15','3','15','Tempora ad et aspernatur laborum ut dolor et. Exercitationem quaerat corporis placeat et.','quia','7',NULL,'2000-03-28 21:01:57','1975-05-07 08:16:57'),
-('16','4','16','Accusantium est ea fuga omnis mollitia. Dolores officia et consequatur iste est quo. Ullam laborum qui ut quo delectus temporibus.','omnis','2058670',NULL,'1971-10-08 00:43:32','1983-04-02 04:55:13'),
-('17','1','17','Quasi itaque atque ut aliquam debitis. Qui consequuntur maiores sit ad perspiciatis quaerat assumenda repudiandae. Necessitatibus placeat quaerat aut voluptatem ratione voluptate expedita. Nulla doloremque aut molestiae nam.','aperiam','3489253',NULL,'1973-12-19 03:20:43','2002-05-02 13:49:04'),
-('18','2','18','Deserunt voluptatem quia voluptatem sit. Qui omnis distinctio optio voluptatem veniam atque dolorem. Repellat laboriosam illo consequatur nesciunt voluptas magni rerum. Saepe quos qui doloremque.','commodi','8',NULL,'1989-03-01 11:19:42','2016-01-22 18:15:32'),
-('19','3','19','Fugiat consequuntur voluptatem odit omnis. Quia aut voluptate officia rerum. Cumque voluptatem eaque dolorum voluptas sed. Et autem atque est minus veritatis explicabo eos.','id','1',NULL,'1970-11-03 21:06:33','1990-09-08 14:13:06'),
-('20','4','20','Autem dolore beatae aut corporis fugit ratione. Ex beatae qui at. Est deleniti asperiores temporibus perferendis est.','fugiat','82',NULL,'2017-06-07 21:23:04','2005-05-24 00:49:07'),
-('21','1','21','Provident eligendi animi quidem qui ipsum. Accusamus dolor sint est qui magnam. Omnis enim quis dolore magni facilis repudiandae deserunt. Consequatur eum at recusandae id tenetur voluptas amet.','ipsa','1',NULL,'1986-12-30 17:42:20','2007-08-13 12:53:43'),
-('22','2','22','Animi ut labore dolore atque consequuntur maxime fugit. Sunt et et facere sint. Recusandae numquam accusamus a. Non quia dolorem reiciendis earum et officiis iure.','adipisci','4582',NULL,'2017-07-19 03:44:31','1995-09-13 03:52:26'),
-('23','3','23','Sint officiis a ipsa quaerat rerum ea totam. Aut perferendis deleniti error ipsa ducimus ipsam. Ipsum a sunt quis placeat.','qui','8302441',NULL,'1985-01-28 07:54:18','1972-04-19 02:50:54'),
-('24','4','24','Et accusamus a et adipisci dolore. Blanditiis sit vitae dolorem voluptas temporibus numquam ab. Aut temporibus accusantium consectetur.','maxime','91764',NULL,'2006-08-07 08:24:03','1974-09-07 06:04:10'),
-('25','1','25','Consequuntur animi sed ea perferendis ad magnam. Aut libero alias sequi iste qui est. Ut quo dignissimos quibusdam doloremque est est incidunt.','qui','90944',NULL,'2000-11-07 09:35:46','1984-03-04 19:48:35'),
-('26','2','26','Accusantium sit praesentium voluptatem molestias architecto. Excepturi doloremque ab eligendi eum ullam voluptas qui. Inventore expedita distinctio omnis laborum laboriosam.','eveniet','317340',NULL,'1999-07-09 18:22:03','2002-01-23 10:53:33'),
-('27','3','27','Et iure cupiditate expedita ut earum et illum. Cum sed assumenda velit officia. Voluptas harum ea magni aspernatur aut ea vel.','incidunt','0',NULL,'1996-06-23 22:20:00','1974-05-09 02:46:11'),
-('28','4','28','A culpa nostrum et quis. Id ipsum ipsum deserunt earum eaque aut earum. Blanditiis et commodi voluptas.','eaque','9525',NULL,'1973-07-27 08:27:31','1985-10-24 20:28:06'),
-('29','1','29','Cumque quod provident provident fugit cumque numquam. Fuga totam delectus a aut quaerat nemo dignissimos eos. Ratione harum et laborum qui dolore aliquam facilis numquam. At quas nam sapiente porro nesciunt voluptatum.','non','20697427',NULL,'1999-02-12 10:23:02','1978-04-23 19:27:34'),
-('30','2','30','Provident quia fuga et consequatur reprehenderit repellat. Et aut cum nostrum ut beatae animi aut alias.','et','263408',NULL,'1977-02-20 04:38:19','1973-12-13 05:04:07'),
-('31','3','31','Voluptatem est recusandae molestias quod. Voluptatem velit omnis asperiores dolorum est vero. Quo doloribus aut natus rem. Dolor sapiente libero quis sit.','et','4391',NULL,'1976-08-28 19:30:58','2016-01-02 04:29:15'),
-('32','4','32','Et commodi tempora voluptate perferendis. Ullam ratione sequi in eveniet accusantium consequatur. Quod quis ipsum consectetur fuga numquam.','odio','90',NULL,'2011-05-04 08:25:34','1991-05-01 22:20:57'),
-('33','1','33','Similique qui quibusdam vitae et. Voluptas nihil nesciunt reiciendis et. Incidunt necessitatibus illo asperiores quidem ipsa quam. Amet quisquam amet aut facere totam fuga quasi.','expedita','87',NULL,'2004-12-04 14:41:26','1978-02-02 04:32:25'),
-('34','2','34','Eos id culpa inventore voluptatem aut placeat dolorem. Ex sunt rem esse aspernatur. Est ut ut quidem est esse. Possimus quia nisi neque.','beatae','694461',NULL,'2009-07-13 19:12:15','2011-11-23 13:58:26'),
-('35','3','35','Libero ut qui dicta impedit. Consequatur earum neque quis consequatur numquam consequatur. Voluptatibus eos vel ex quis sed cum.','et','154603',NULL,'1982-03-22 14:11:50','2003-04-07 16:17:28'),
-('36','4','36','Sapiente in totam sed aliquam rem qui occaecati. Dolor dignissimos omnis mollitia temporibus repellendus ut. Est esse facilis deleniti eum dolorem ex distinctio. Est nisi rerum aut optio. Quod dolor occaecati expedita quia incidunt debitis.','tenetur','6392040',NULL,'2002-02-25 12:09:15','2010-09-11 23:52:54'),
-('37','1','37','Ut praesentium soluta facere sunt. Eveniet in voluptatem optio neque cumque quis ut. Dolores assumenda ullam error quis atque magni ut. Quia at aut et aliquid consectetur.','accusantium','0',NULL,'2001-12-10 18:20:19','1979-12-21 04:42:14'),
-('38','2','38','Ut ab libero dolor eum deleniti porro facilis. Quo iusto perspiciatis fugiat voluptatem nam sint. Ut nisi sed et dicta eos explicabo quos.','corrupti','3',NULL,'1985-09-26 03:28:43','1991-05-12 14:55:12'),
-('39','3','39','Nam voluptas omnis in quas aut. Nihil perspiciatis magni voluptatum mollitia aut nulla. Consequuntur nostrum atque nihil omnis. Velit hic eum sapiente quis molestiae deleniti.','tempore','2896602',NULL,'1986-09-26 13:25:54','1986-08-07 15:30:13'),
-('40','4','40','Ea odio eveniet totam asperiores aut vel. Nihil dolores natus magnam aut delectus perspiciatis eum ullam. Magnam est cupiditate earum fuga aut numquam. Delectus modi ut occaecati est et aut.','necessitatibus','0',NULL,'1992-02-13 16:01:03','1983-07-19 23:55:19'),
-('41','1','41','Dolorem molestias similique laboriosam et. Incidunt earum voluptatem magnam voluptas eligendi quos. Cum voluptatem quia odio sed. Ut voluptatum ex sint illum molestias perferendis laborum.','sapiente','816152694',NULL,'1990-10-06 02:14:28','2002-12-12 15:56:30'),
-('42','2','42','Id illo quia corporis. Magni id illo commodi natus. Eos porro error nihil optio quia.','dolorem','7095',NULL,'1997-02-27 15:12:18','2013-08-18 14:47:12'),
-('43','3','43','Eos omnis error quis est debitis. Itaque adipisci voluptatibus velit autem. Tempora quo saepe nesciunt sapiente sequi hic.','illo','1520673',NULL,'1986-07-05 15:35:21','1979-06-12 16:40:39'),
-('44','4','44','Dolore non repellat mollitia dolor ut sequi. Excepturi enim dolorem mollitia eaque sit porro ab. Eos consequatur hic dolore itaque quia animi ea.','dignissimos','548',NULL,'2002-12-20 21:54:14','1972-09-13 17:45:56'),
-('45','1','45','Cupiditate modi molestiae culpa delectus est et voluptatem. Eius non impedit asperiores praesentium repellendus tempore. Minus natus quod eos quidem.','qui','7380',NULL,'2016-05-23 07:35:39','2016-10-25 14:56:39'),
-('46','2','46','Provident dignissimos necessitatibus ut et esse. Excepturi et iste facere id suscipit ut. Voluptatem est ex et dolor nobis facilis et. Ut voluptatibus sunt et ut.','aut','14685',NULL,'2009-12-01 19:42:24','1985-04-17 06:08:45'),
-('47','3','47','In mollitia consequatur aspernatur atque. Alias illum voluptatem et nemo et exercitationem. Voluptatem in ut quia similique quis. Saepe cupiditate sunt tenetur minima.','laborum','3',NULL,'2010-12-16 03:47:22','1978-12-17 17:32:19'),
-('48','4','48','Quidem ad libero voluptas et veniam. Dolores dolores quia voluptatem soluta. Voluptatibus facere saepe non nulla.','consequatur','490',NULL,'1977-01-13 19:24:52','1983-04-09 21:32:18'),
-('49','1','49','Esse eveniet similique sit temporibus aliquam. Sequi consequatur excepturi enim aut. Mollitia voluptas facilis velit omnis animi ea numquam. Accusamus nostrum aspernatur ullam itaque et eveniet quia. Corrupti tempora fugit rerum architecto voluptatem pariatur.','quae','26430194',NULL,'1990-08-08 17:43:45','1979-04-22 09:23:37'),
-('50','2','50','Molestiae excepturi quia necessitatibus id voluptatem laudantium. Et ut ea mollitia quisquam. Vel consequatur quas excepturi totam sit suscipit. Aut tempora ratione eos ipsam quae possimus libero. Architecto et quia voluptatem et tempora alias sequi.','nulla','0',NULL,'1995-04-23 00:55:46','1985-09-06 19:56:23'),
-('51','3','51','Omnis quaerat minus inventore quaerat. Ut sunt optio similique laboriosam. Fugit voluptas nesciunt debitis possimus tempore. Architecto sunt maiores laborum quod laboriosam.','dolorem','38',NULL,'1976-09-18 04:50:57','1986-02-16 00:27:21'),
-('52','4','52','Ullam unde earum dolorem. Vel doloremque harum optio deserunt iure. Voluptate at animi veniam suscipit quisquam.','dolorum','447',NULL,'2015-10-19 19:11:46','2013-05-12 17:55:38'),
-('53','1','53','Ut distinctio non vero qui. Accusantium a consectetur magnam eum quisquam molestias. Sequi et quam fuga ut sint.','impedit','874783484',NULL,'1988-08-22 03:39:27','1993-09-25 02:51:19'),
-('54','2','54','Fugiat rem eveniet laborum eius ipsa. Soluta provident nihil dolor aliquid ut modi magnam delectus. Ratione amet dolores quam molestiae blanditiis.','voluptas','86837',NULL,'2010-01-19 15:57:21','2007-09-17 16:40:07'),
-('55','3','55','Consequatur voluptatem et sequi voluptatibus ut accusamus perferendis. Aut perspiciatis laboriosam ut consectetur. Ducimus omnis rem ut unde nobis sit rerum laborum. Reiciendis quaerat amet consequatur velit excepturi deserunt atque. Sed natus quibusdam quidem pariatur.','et','868',NULL,'2014-09-09 12:10:38','2015-12-29 19:56:19'),
-('56','4','56','Non est quia doloribus sed. Voluptates vitae necessitatibus molestiae quo dolorum mollitia at. Quos rem omnis porro nulla vero tempore similique ratione. Mollitia quo quo et et non laboriosam perferendis sit.','aliquid','10461638',NULL,'1988-06-15 18:16:35','1997-01-08 02:34:54'),
-('57','1','57','Quia provident autem nisi quisquam rerum. Inventore nostrum dolores eum explicabo hic ipsum deserunt. Eos et eum aut.','maiores','482028',NULL,'2016-05-20 14:16:27','2017-07-25 19:46:31'),
-('58','2','58','Repellat minima animi iure explicabo blanditiis sed. Incidunt vel animi reprehenderit quisquam reprehenderit. Dolor ut ipsum deleniti ut officia. Velit sequi consequatur nemo nam sed rerum.','dolorem','142917961',NULL,'1974-05-05 14:37:58','1982-01-31 04:02:33'),
-('59','3','59','Assumenda ipsum officiis fuga unde itaque eveniet magni. Quasi assumenda qui sed quod quis. Amet sit dolores accusantium voluptatem omnis unde soluta.','unde','6099',NULL,'1972-08-23 23:37:28','2003-01-01 06:28:14'),
-('60','4','60','Non est animi consequatur. Neque aliquid aut voluptatem aut inventore ut. Maiores hic voluptas nesciunt. Nulla vel facilis deleniti tempore.','dignissimos','783631045',NULL,'2006-11-01 09:16:53','1984-11-01 16:56:52'),
-('61','1','61','Debitis neque est ratione. Quia quod ab ut sit et neque quam. Illum suscipit voluptas est amet dolores sit perspiciatis cumque. Eos est et veritatis non esse.','nisi','914587',NULL,'1983-12-22 15:47:23','1999-07-24 05:23:05'),
-('62','2','62','Nihil quasi doloremque rerum velit non libero. Non veritatis perspiciatis autem. Expedita rerum nihil aliquam.','sint','86964',NULL,'2011-09-12 04:05:53','1973-07-03 22:53:03'),
-('63','3','63','Nesciunt aut sint nam dolor facilis ut est. Odit dolores assumenda dolore.','ipsum','689891921',NULL,'2008-05-09 22:19:10','1989-05-16 00:33:18'),
-('64','4','64','Aliquid facere dignissimos quidem quo et beatae. Non qui dolore velit. Nemo non asperiores architecto corporis ratione.','velit','767',NULL,'1981-11-27 18:43:00','2007-02-13 08:00:47'),
-('65','1','65','Id quos rerum delectus quas porro eos. Qui in accusantium nihil et possimus. Qui doloribus dolores a deserunt illo.','ducimus','663',NULL,'2005-01-30 20:53:19','1991-09-10 21:19:55'),
-('66','2','66','Ipsa odit ut sed et. Eos vero aut veritatis doloribus ipsam et at repellendus. Fugiat sequi sint aliquam nostrum voluptate. Omnis quaerat consequatur cum.','mollitia','66726632',NULL,'1970-10-07 16:45:18','1994-10-28 09:20:08'),
-('67','3','67','Placeat aut consequatur unde sed qui voluptatum. Harum ut quasi reprehenderit nostrum et. Facilis magnam consectetur ea suscipit accusantium.','enim','213578',NULL,'2015-06-20 09:21:47','1992-04-14 19:43:13'),
-('68','4','68','Quod assumenda impedit aut odio consequatur aut quisquam. In officia mollitia nobis. Non accusantium ut tempore.','iure','0',NULL,'1996-05-23 22:33:17','2006-04-16 19:05:34'),
-('69','1','69','Nemo eum et placeat non et repellat consequuntur. Rem vitae rerum sed aut numquam voluptatum quia. Magni itaque rerum laboriosam saepe molestias a.','voluptas','8488',NULL,'1973-03-05 22:36:40','1999-09-27 21:11:54'),
-('70','2','70','Alias qui dolores tempore est. Molestiae necessitatibus debitis nihil qui. Et molestiae voluptatem doloribus tempore enim veritatis tenetur. Consequatur qui non debitis voluptas et in soluta.','aut','96',NULL,'2001-09-09 15:19:46','1972-11-13 06:05:57'),
-('71','3','71','Ipsam velit maiores sit expedita distinctio. Nostrum corrupti similique officiis et et dolor. Quasi autem voluptas voluptas id molestias.','dicta','968311915',NULL,'1979-02-24 05:29:37','1988-12-17 03:44:14'),
-('72','4','72','Natus vel est aspernatur qui velit adipisci sunt. Qui facilis cupiditate accusantium ut excepturi sequi esse. Numquam ipsam eos exercitationem qui perspiciatis. Sint quia consectetur recusandae in deserunt.','voluptate','985362',NULL,'2018-05-05 11:56:57','1980-08-25 16:44:26'),
-('73','1','73','Atque et sint quam maxime. Beatae necessitatibus soluta quos qui qui explicabo aut. Cupiditate quisquam quis ab modi. Modi aut explicabo voluptates rerum ut quaerat.','modi','3',NULL,'2000-10-06 02:42:23','2011-04-26 07:15:28'),
-('74','2','74','Sint nemo quasi est. Nulla vitae aut eveniet id exercitationem. Culpa eveniet neque ut minus ea eos.','possimus','17341',NULL,'1988-09-11 05:40:20','1974-05-21 05:13:15'),
-('75','3','75','Sed sed ad eum commodi quam nulla perspiciatis doloremque. Corporis debitis nostrum harum consequuntur molestiae aut et. Voluptatibus in eos consequatur commodi molestiae.','eaque','778',NULL,'2012-12-31 01:29:33','1998-04-04 05:34:54'),
-('76','4','76','Quisquam consequuntur deleniti rerum et dolorum sapiente voluptatem. Laudantium voluptatibus rem repudiandae omnis voluptas harum sed. Nam officiis dignissimos ut similique ipsum et architecto ullam. Ipsa illo veniam fuga ullam.','iste','6',NULL,'1998-12-20 17:58:27','2007-09-17 04:05:31'),
-('77','1','77','Sequi vero nostrum sint dolores ratione aut et. Iure qui voluptas molestiae recusandae. Ut perferendis consequatur sed dolorum deleniti nobis exercitationem. Voluptas cumque laudantium aut quibusdam quia ex.','est','86',NULL,'1981-08-11 09:46:58','1985-11-21 04:30:46'),
-('78','2','78','Similique sit deserunt assumenda inventore sunt dolorem. Nihil quo rerum vel assumenda. Saepe dolorum reiciendis et esse ipsam amet quod. Et nam et earum eveniet debitis et nesciunt.','omnis','8603',NULL,'1981-11-02 05:26:06','2016-11-11 07:42:26'),
-('79','3','79','Sed qui ad quibusdam eaque dolores. Quia earum quis corporis non. Tempore consequatur qui a cupiditate.','ad','5346',NULL,'1996-01-26 11:47:20','2006-08-16 11:21:26'),
-('80','4','80','Facilis a ducimus ad. Ipsam rerum iure assumenda veniam dolorem consequatur quasi occaecati. Aut sed est et sapiente aspernatur illo accusamus. Voluptatem asperiores quaerat sit sit.','dignissimos','58481',NULL,'1989-09-23 04:33:51','1995-05-23 13:25:52'),
-('81','1','81','Quidem et eius doloremque ratione. Qui modi ipsum est officia et dolores. Molestias porro non velit totam.','rerum','5209165',NULL,'1990-06-19 13:06:13','1976-01-17 08:03:16'),
-('82','2','82','Perferendis et et enim beatae ut voluptas velit. Officiis perspiciatis sed quaerat rem. Fuga laborum quia sed amet laboriosam voluptatem.','dolores','47161319',NULL,'1974-09-03 07:54:26','1991-09-30 05:10:28'),
-('83','3','83','Delectus expedita libero fuga accusamus qui. Accusantium dolores iste nihil mollitia voluptatum. Eum error repellendus suscipit quia nisi culpa ut reiciendis. Tempore et reiciendis quaerat culpa.','quos','39321',NULL,'1995-07-10 12:13:21','1991-05-15 01:32:55'),
-('84','4','84','Repudiandae dolor illum est maxime sapiente aut perspiciatis. Sunt reiciendis molestiae commodi at odit est. Qui fuga voluptatibus sunt animi velit non et.','et','2',NULL,'1971-04-15 11:44:35','2001-10-01 05:51:18'),
-('85','1','85','Nisi iusto cum sed quam est cupiditate. Et praesentium necessitatibus ipsam maiores expedita. Velit autem possimus et labore.','deserunt','5929496',NULL,'2004-04-29 13:55:06','1979-07-11 13:41:08'),
-('86','2','86','Ea sapiente voluptatem dolores a temporibus enim. Rerum quasi quo atque modi. Autem repellendus vitae esse aspernatur iure natus reprehenderit. Quo aut fugit dolorem atque qui voluptate atque ullam.','possimus','92',NULL,'2019-02-23 14:58:44','1971-04-19 07:08:45'),
-('87','3','87','Dignissimos non qui est eligendi in. Et hic ea quidem et facilis.','sint','141',NULL,'2015-08-30 01:22:54','1977-05-07 13:53:19'),
-('88','4','88','Ipsa dolores voluptatem maxime rem dolores dolores. Cupiditate doloribus porro in fuga ut. Aut aut nihil repellendus nisi asperiores. Ut voluptas id in veniam voluptatem veritatis.','rem','74236435',NULL,'1971-12-03 15:35:48','1976-03-01 14:02:43'),
-('89','1','89','Doloremque rerum placeat dolores ut error. Assumenda dolores voluptatem nihil consequatur et aspernatur ab. Ducimus rerum et minus doloribus at ullam.','quo','258',NULL,'1984-01-05 13:50:11','1973-05-02 15:31:16'),
-('90','2','90','Aliquid rerum sit natus deserunt. Nihil sint in ut facere eum. Quibusdam magnam ut qui officia quod dolore.','odio','163',NULL,'1978-08-29 14:13:55','1982-05-30 20:12:58'),
-('91','3','91','Laboriosam non quia et blanditiis. Nihil ut est non autem voluptatibus. Molestiae reprehenderit at est sed sint enim. Voluptatibus ex eligendi doloribus non quaerat nostrum dignissimos. Architecto in veniam laboriosam inventore beatae.','autem','1',NULL,'1988-11-12 16:11:24','1974-11-28 14:05:18'),
-('92','4','92','Vero esse suscipit non quis sed temporibus. Consectetur sit vel distinctio repellendus deleniti veniam qui. Eius veritatis at tempore quia.','neque','2',NULL,'2009-05-27 02:49:55','2005-01-27 07:18:36'),
-('93','1','93','Repellat delectus nulla est nulla cum. Voluptas eum aut necessitatibus sit animi illo impedit aut. Consectetur aut et excepturi porro esse. Sint praesentium autem deleniti omnis et harum vitae. Minima error dolores voluptas provident cupiditate officiis.','et','93',NULL,'1987-09-12 14:34:04','2001-10-13 14:24:57'),
-('94','2','94','Tempore corrupti vel nemo doloremque quibusdam expedita. Similique sit quam quis dolorum non excepturi. Rem voluptas laborum quos voluptas vel et. Error eveniet ea cum minus nihil officia dolorum. Ullam qui voluptatem autem ut.','quisquam','5591',NULL,'1998-08-05 01:54:38','1998-02-27 05:54:08'),
-('95','3','95','Labore velit ipsam et sint voluptas. Necessitatibus maxime nihil repellendus quo cupiditate. Sit ad qui nemo. Sed magnam quia eos dignissimos in quo iusto.','maiores','0',NULL,'2007-08-09 17:40:53','1978-01-26 05:46:04'),
-('96','4','96','Ducimus possimus dolorem quia corrupti dolore. Omnis nam ea eum culpa distinctio ex optio aut. Voluptas non facilis quo natus corrupti perferendis. Illo rerum ut explicabo sit.','ipsum','667274',NULL,'2011-03-10 17:39:19','2000-11-28 03:32:01'),
-('97','1','97','Voluptatem corrupti exercitationem nulla est itaque. Ipsum quaerat similique ut dolorum. Qui aliquid neque labore alias ut placeat.','non','62',NULL,'1996-01-17 20:10:58','1981-06-13 17:41:29'),
-('98','2','98','Qui aspernatur aut sit veniam. Aliquam nisi fuga facere. Asperiores aut beatae laboriosam libero. Fugiat id perspiciatis a dolores voluptatem ad earum.','aut','801927073',NULL,'1980-01-09 00:19:44','1988-02-25 17:22:37'),
-('99','3','99','Assumenda iure delectus optio blanditiis atque occaecati. Ea assumenda dolor quibusdam nemo aut. Fugiat omnis velit quod. Sequi nihil quis consequatur sit et.','est','707',NULL,'1985-07-16 03:26:38','1997-04-24 07:20:57'),
-('100','4','100','Deserunt accusantium laudantium ab soluta facilis assumenda. Et temporibus ab corporis dolorum rem qui. Ipsa veritatis amet voluptas quod. Ut incidunt illo ullam fugit optio recusandae.','doloribus','4',NULL,'2011-08-04 02:10:30','1997-09-15 00:49:47'); 
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(1,1,'Est aut aliquid est. Soluta eveniet doloribus ipsam ut id assumenda quam. Consequuntur et velit aperiam error corporis rem corporis. Est similique quisquam quia maxime eaque possimus facere officiis. Odio magni atque dicta voluptatibus hic iste delectus.','a.jpg',5,NULL,'1991-11-16 08:14:38.000','2019-06-19 18:11:58.000')
+,(2,2,'Laborum dolorem magni unde vero sit hic. Pariatur quia voluptas magnam. Blanditiis dolorem et molestias veniam facere provident.','asperiores.jpg',4510,NULL,'1986-12-10 19:34:26.000','2019-06-19 18:11:58.000')
+,(1,3,'A quam ea ullam reiciendis vel et reiciendis. Delectus iure mollitia est. Eum dolores dolores sed officia vitae qui. Sed repudiandae voluptatem voluptatibus libero culpa quo.','sapiente.jpg',763116,NULL,'1978-09-18 17:07:49.000','2019-06-19 18:11:58.000')
+,(4,4,'Velit commodi in veniam occaecati. Tenetur temporibus ullam enim officiis aut illum. In maiores velit nobis soluta molestias maiores tempora. Quisquam et ut et sequi.','rerum.jpg',740,NULL,'1984-10-21 04:41:15.000','2019-06-19 18:11:58.000')
+,(1,5,'Est eaque est qui et omnis rerum. Expedita porro nesciunt inventore consequatur quos. Inventore aut rerum voluptas. Dicta vel ut quibusdam cupiditate tempore.','user5-profile-image.jpg',40813,NULL,'2014-06-20 03:34:11.000','2019-06-19 18:11:58.000')
+,(2,6,'Atque et nam nulla et aliquid. Vel repellendus aut natus odit quibusdam quis atque et. Laudantium minima velit dolores eos voluptate nostrum.','quasi.jpg',119422,NULL,'1991-11-02 07:50:45.000','2019-06-19 18:11:58.000')
+,(3,7,'Nihil ut et reprehenderit et. Numquam veniam quis impedit. Voluptas saepe rerum illo vel omnis. Aliquam illum ut quo saepe ea unde est.','non.jpg',704558,NULL,'1988-09-17 20:56:38.000','2019-06-19 18:11:58.000')
+,(4,8,'Sint quod fugit molestiae dolore repellendus est. Quis corporis necessitatibus commodi placeat temporibus doloremque voluptatem. Nemo maxime sit dolorem perferendis repellat. Et impedit deleniti eaque pariatur ut quia voluptatibus.','earum.jpg',65108,NULL,'1995-10-07 10:19:53.000','2019-06-19 18:11:58.000')
+,(1,9,'Optio sed aperiam veniam eum. Rerum placeat soluta iusto perspiciatis quibusdam dolorem eos. Ea pariatur optio est ut.','ullam.jpg',83717449,NULL,'2003-08-05 05:55:25.000','2019-06-19 18:11:58.000')
+,(2,10,'Facere nostrum facilis aperiam quisquam dolor. Minima omnis est nam.','maiores.jpg',75,NULL,'1984-05-17 07:37:30.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(3,1,'A omnis ratione non. Et velit sed incidunt corporis ut rerum nemo. Ut pariatur tempora ea incidunt praesentium ut. Eligendi et et rerum sequi ut.','non.jpg',0,NULL,'2010-05-07 19:13:09.000','2019-06-19 18:11:58.000')
+,(4,1,'Quo minus harum debitis debitis quis sunt. Dolores suscipit placeat dolorum non voluptate et. Non eos odio esse tempore. Illum minus quidem temporibus porro.','earum.jpg',1826766,NULL,'2013-08-25 22:49:45.000','2019-06-19 18:11:58.000')
+,(1,1,'Et aliquid sit natus vitae fuga enim repudiandae. Quis ab et debitis est accusantium labore. Exercitationem delectus eaque necessitatibus.','hic.jpg',979,NULL,'2015-11-02 00:11:31.000','2019-06-19 18:11:58.000')
+,(2,1,'Nobis est sed blanditiis assumenda incidunt explicabo. Facere rem assumenda odio explicabo ad enim repellat quia. Dolor mollitia fugiat officia nihil animi.','iste.jpg',18,NULL,'2006-05-11 12:11:06.000','2019-06-19 18:11:58.000')
+,(3,1,'Tempora ad et aspernatur laborum ut dolor et. Exercitationem quaerat corporis placeat et.','quia.jpg',7,NULL,'2000-03-29 04:01:57.000','2019-06-19 18:11:58.000')
+,(4,1,'Accusantium est ea fuga omnis mollitia. Dolores officia et consequatur iste est quo. Ullam laborum qui ut quo delectus temporibus.','omnis.jpg',2058670,NULL,'1971-10-08 06:43:32.000','2019-06-19 18:11:58.000')
+,(1,1,'Quasi itaque atque ut aliquam debitis. Qui consequuntur maiores sit ad perspiciatis quaerat assumenda repudiandae. Necessitatibus placeat quaerat aut voluptatem ratione voluptate expedita. Nulla doloremque aut molestiae nam.','aperiam.jpg',3489253,NULL,'1973-12-19 09:20:43.000','2019-06-19 18:11:58.000')
+,(2,1,'Deserunt voluptatem quia voluptatem sit. Qui omnis distinctio optio voluptatem veniam atque dolorem. Repellat laboriosam illo consequatur nesciunt voluptas magni rerum. Saepe quos qui doloremque.','commodi.jpg',8,NULL,'1989-03-01 17:19:42.000','2019-06-19 18:11:58.000')
+,(3,1,'Fugiat consequuntur voluptatem odit omnis. Quia aut voluptate officia rerum. Cumque voluptatem eaque dolorum voluptas sed. Et autem atque est minus veritatis explicabo eos.','id.jpg',1,NULL,'1970-11-04 03:06:33.000','2019-06-19 18:11:58.000')
+,(4,2,'Autem dolore beatae aut corporis fugit ratione. Ex beatae qui at. Est deleniti asperiores temporibus perferendis est.','fugiat.jpg',82,NULL,'2017-06-08 03:23:04.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(1,21,'Provident eligendi animi quidem qui ipsum. Accusamus dolor sint est qui magnam. Omnis enim quis dolore magni facilis repudiandae deserunt. Consequatur eum at recusandae id tenetur voluptas amet.','ipsa.jpg',1,NULL,'1986-12-30 23:42:20.000','2019-06-19 18:11:58.000')
+,(2,22,'Animi ut labore dolore atque consequuntur maxime fugit. Sunt et et facere sint. Recusandae numquam accusamus a. Non quia dolorem reiciendis earum et officiis iure.','adipisci.jpg',4582,NULL,'2017-07-19 09:44:31.000','2019-06-19 18:11:58.000')
+,(3,23,'Sint officiis a ipsa quaerat rerum ea totam. Aut perferendis deleniti error ipsa ducimus ipsam. Ipsum a sunt quis placeat.','qui.jpg',8302441,NULL,'1985-01-28 13:54:18.000','2019-06-19 18:11:58.000')
+,(4,24,'Et accusamus a et adipisci dolore. Blanditiis sit vitae dolorem voluptas temporibus numquam ab. Aut temporibus accusantium consectetur.','maxime.jpg',91764,NULL,'2006-08-07 15:24:03.000','2019-06-19 18:11:58.000')
+,(1,25,'Consequuntur animi sed ea perferendis ad magnam. Aut libero alias sequi iste qui est. Ut quo dignissimos quibusdam doloremque est est incidunt.','qui.jpg',90944,NULL,'2000-11-07 15:35:46.000','2019-06-19 18:11:58.000')
+,(2,26,'Accusantium sit praesentium voluptatem molestias architecto. Excepturi doloremque ab eligendi eum ullam voluptas qui. Inventore expedita distinctio omnis laborum laboriosam.','eveniet.jpg',317340,NULL,'1999-07-10 01:22:03.000','2019-06-19 18:11:58.000')
+,(3,27,'Et iure cupiditate expedita ut earum et illum. Cum sed assumenda velit officia. Voluptas harum ea magni aspernatur aut ea vel.','incidunt.jpg',0,NULL,'1996-06-24 05:20:00.000','2019-06-19 18:11:58.000')
+,(4,28,'A culpa nostrum et quis. Id ipsum ipsum deserunt earum eaque aut earum. Blanditiis et commodi voluptas.','eaque.jpg',9525,NULL,'1973-07-27 14:27:31.000','2019-06-19 18:11:58.000')
+,(1,29,'Cumque quod provident provident fugit cumque numquam. Fuga totam delectus a aut quaerat nemo dignissimos eos. Ratione harum et laborum qui dolore aliquam facilis numquam. At quas nam sapiente porro nesciunt voluptatum.','non.jpg',20697427,NULL,'1999-02-12 16:23:02.000','2019-06-19 18:11:58.000')
+,(2,30,'Provident quia fuga et consequatur reprehenderit repellat. Et aut cum nostrum ut beatae animi aut alias.','et.jpg',263408,NULL,'1977-02-20 10:38:19.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(3,31,'Voluptatem est recusandae molestias quod. Voluptatem velit omnis asperiores dolorum est vero. Quo doloribus aut natus rem. Dolor sapiente libero quis sit.','et.jpg',4391,NULL,'1976-08-29 01:30:58.000','2019-06-19 18:11:58.000')
+,(4,32,'Et commodi tempora voluptate perferendis. Ullam ratione sequi in eveniet accusantium consequatur. Quod quis ipsum consectetur fuga numquam.','odio.jpg',90,NULL,'2011-05-04 15:25:34.000','2019-06-19 18:11:58.000')
+,(1,33,'Similique qui quibusdam vitae et. Voluptas nihil nesciunt reiciendis et. Incidunt necessitatibus illo asperiores quidem ipsa quam. Amet quisquam amet aut facere totam fuga quasi.','expedita.jpg',87,NULL,'2004-12-04 20:41:26.000','2019-06-19 18:11:58.000')
+,(2,34,'Eos id culpa inventore voluptatem aut placeat dolorem. Ex sunt rem esse aspernatur. Est ut ut quidem est esse. Possimus quia nisi neque.','beatae.jpg',694461,NULL,'2009-07-14 02:12:15.000','2019-06-19 18:11:58.000')
+,(3,35,'Libero ut qui dicta impedit. Consequatur earum neque quis consequatur numquam consequatur. Voluptatibus eos vel ex quis sed cum.','et.jpg',154603,NULL,'1982-03-22 20:11:50.000','2019-06-19 18:11:58.000')
+,(4,36,'Sapiente in totam sed aliquam rem qui occaecati. Dolor dignissimos omnis mollitia temporibus repellendus ut. Est esse facilis deleniti eum dolorem ex distinctio. Est nisi rerum aut optio. Quod dolor occaecati expedita quia incidunt debitis.','tenetur.jpg',6392040,NULL,'2002-02-25 18:09:15.000','2019-06-19 18:11:58.000')
+,(1,37,'Ut praesentium soluta facere sunt. Eveniet in voluptatem optio neque cumque quis ut. Dolores assumenda ullam error quis atque magni ut. Quia at aut et aliquid consectetur.','accusantium.jpg',0,NULL,'2001-12-11 00:20:19.000','2019-06-19 18:11:58.000')
+,(2,38,'Ut ab libero dolor eum deleniti porro facilis. Quo iusto perspiciatis fugiat voluptatem nam sint. Ut nisi sed et dicta eos explicabo quos.','corrupti.jpg',3,NULL,'1985-09-26 10:28:43.000','2019-06-19 18:11:58.000')
+,(3,39,'Nam voluptas omnis in quas aut. Nihil perspiciatis magni voluptatum mollitia aut nulla. Consequuntur nostrum atque nihil omnis. Velit hic eum sapiente quis molestiae deleniti.','tempore.jpg',2896602,NULL,'1986-09-26 20:25:54.000','2019-06-19 18:11:58.000')
+,(4,40,'Ea odio eveniet totam asperiores aut vel. Nihil dolores natus magnam aut delectus perspiciatis eum ullam. Magnam est cupiditate earum fuga aut numquam. Delectus modi ut occaecati est et aut.','necessitatibus.jpg',0,NULL,'1992-02-13 22:01:03.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(1,41,'Dolorem molestias similique laboriosam et. Incidunt earum voluptatem magnam voluptas eligendi quos. Cum voluptatem quia odio sed. Ut voluptatum ex sint illum molestias perferendis laborum.','sapiente.jpg',816152694,NULL,'1990-10-06 08:14:28.000','2019-06-19 18:11:58.000')
+,(2,42,'Id illo quia corporis. Magni id illo commodi natus. Eos porro error nihil optio quia.','dolorem.jpg',7095,NULL,'1997-02-27 21:12:18.000','2019-06-19 18:11:58.000')
+,(3,43,'Eos omnis error quis est debitis. Itaque adipisci voluptatibus velit autem. Tempora quo saepe nesciunt sapiente sequi hic.','illo.jpg',1520673,NULL,'1986-07-05 22:35:21.000','2019-06-19 18:11:58.000')
+,(4,44,'Dolore non repellat mollitia dolor ut sequi. Excepturi enim dolorem mollitia eaque sit porro ab. Eos consequatur hic dolore itaque quia animi ea.','dignissimos.jpg',548,NULL,'2002-12-21 03:54:14.000','2019-06-19 18:11:58.000')
+,(1,45,'Cupiditate modi molestiae culpa delectus est et voluptatem. Eius non impedit asperiores praesentium repellendus tempore. Minus natus quod eos quidem.','qui.jpg',7380,NULL,'2016-05-23 13:35:39.000','2019-06-19 18:11:58.000')
+,(2,46,'Provident dignissimos necessitatibus ut et esse. Excepturi et iste facere id suscipit ut. Voluptatem est ex et dolor nobis facilis et. Ut voluptatibus sunt et ut.','aut.jpg',14685,NULL,'2009-12-02 01:42:24.000','2019-06-19 18:11:58.000')
+,(3,47,'In mollitia consequatur aspernatur atque. Alias illum voluptatem et nemo et exercitationem. Voluptatem in ut quia similique quis. Saepe cupiditate sunt tenetur minima.','laborum.jpg',3,NULL,'2010-12-16 09:47:22.000','2019-06-19 18:11:58.000')
+,(4,48,'Quidem ad libero voluptas et veniam. Dolores dolores quia voluptatem soluta. Voluptatibus facere saepe non nulla.','consequatur.jpg',490,NULL,'1977-01-14 01:24:52.000','2019-06-19 18:11:58.000')
+,(1,49,'Esse eveniet similique sit temporibus aliquam. Sequi consequatur excepturi enim aut. Mollitia voluptas facilis velit omnis animi ea numquam. Accusamus nostrum aspernatur ullam itaque et eveniet quia. Corrupti tempora fugit rerum architecto voluptatem pariatur.','quae.jpg',26430194,NULL,'1990-08-09 00:43:45.000','2019-06-19 18:11:58.000')
+,(2,50,'Molestiae excepturi quia necessitatibus id voluptatem laudantium. Et ut ea mollitia quisquam. Vel consequatur quas excepturi totam sit suscipit. Aut tempora ratione eos ipsam quae possimus libero. Architecto et quia voluptatem et tempora alias sequi.','nulla.jpg',0,NULL,'1995-04-23 07:55:46.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(3,51,'Omnis quaerat minus inventore quaerat. Ut sunt optio similique laboriosam. Fugit voluptas nesciunt debitis possimus tempore. Architecto sunt maiores laborum quod laboriosam.','dolorem.jpg',38,NULL,'1976-09-18 10:50:57.000','2019-06-19 18:11:58.000')
+,(4,52,'Ullam unde earum dolorem. Vel doloremque harum optio deserunt iure. Voluptate at animi veniam suscipit quisquam.','dolorum.jpg',447,NULL,'2015-10-20 01:11:46.000','2019-06-19 18:11:58.000')
+,(1,53,'Ut distinctio non vero qui. Accusantium a consectetur magnam eum quisquam molestias. Sequi et quam fuga ut sint.','impedit.jpg',874783484,NULL,'1988-08-22 10:39:27.000','2019-06-19 18:11:58.000')
+,(2,54,'Fugiat rem eveniet laborum eius ipsa. Soluta provident nihil dolor aliquid ut modi magnam delectus. Ratione amet dolores quam molestiae blanditiis.','voluptas.jpg',86837,NULL,'2010-01-19 21:57:21.000','2019-06-19 18:11:58.000')
+,(3,55,'Consequatur voluptatem et sequi voluptatibus ut accusamus perferendis. Aut perspiciatis laboriosam ut consectetur. Ducimus omnis rem ut unde nobis sit rerum laborum. Reiciendis quaerat amet consequatur velit excepturi deserunt atque. Sed natus quibusdam quidem pariatur.','et.jpg',868,NULL,'2014-09-09 19:10:38.000','2019-06-19 18:11:58.000')
+,(4,56,'Non est quia doloribus sed. Voluptates vitae necessitatibus molestiae quo dolorum mollitia at. Quos rem omnis porro nulla vero tempore similique ratione. Mollitia quo quo et et non laboriosam perferendis sit.','aliquid.jpg',10461638,NULL,'1988-06-16 01:16:35.000','2019-06-19 18:11:58.000')
+,(1,57,'Quia provident autem nisi quisquam rerum. Inventore nostrum dolores eum explicabo hic ipsum deserunt. Eos et eum aut.','maiores.jpg',482028,NULL,'2016-05-20 20:16:27.000','2019-06-19 18:11:58.000')
+,(2,58,'Repellat minima animi iure explicabo blanditiis sed. Incidunt vel animi reprehenderit quisquam reprehenderit. Dolor ut ipsum deleniti ut officia. Velit sequi consequatur nemo nam sed rerum.','dolorem.jpg',142917961,NULL,'1974-05-05 20:37:58.000','2019-06-19 18:11:58.000')
+,(3,59,'Assumenda ipsum officiis fuga unde itaque eveniet magni. Quasi assumenda qui sed quod quis. Amet sit dolores accusantium voluptatem omnis unde soluta.','unde.jpg',6099,NULL,'1972-08-24 05:37:28.000','2019-06-19 18:11:58.000')
+,(4,60,'Non est animi consequatur. Neque aliquid aut voluptatem aut inventore ut. Maiores hic voluptas nesciunt. Nulla vel facilis deleniti tempore.','dignissimos.jpg',783631045,NULL,'2006-11-01 15:16:53.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(1,61,'Debitis neque est ratione. Quia quod ab ut sit et neque quam. Illum suscipit voluptas est amet dolores sit perspiciatis cumque. Eos est et veritatis non esse.','nisi.jpg',914587,NULL,'1983-12-22 21:47:23.000','2019-06-19 18:11:58.000')
+,(2,62,'Nihil quasi doloremque rerum velit non libero. Non veritatis perspiciatis autem. Expedita rerum nihil aliquam.','sint.jpg',86964,NULL,'2011-09-12 11:05:53.000','2019-06-19 18:11:58.000')
+,(3,63,'Nesciunt aut sint nam dolor facilis ut est. Odit dolores assumenda dolore.','ipsum.jpg',689891921,NULL,'2008-05-10 05:19:10.000','2019-06-19 18:11:58.000')
+,(4,64,'Aliquid facere dignissimos quidem quo et beatae. Non qui dolore velit. Nemo non asperiores architecto corporis ratione.','velit.jpg',767,NULL,'1981-11-28 00:43:00.000','2019-06-19 18:11:58.000')
+,(1,65,'Id quos rerum delectus quas porro eos. Qui in accusantium nihil et possimus. Qui doloribus dolores a deserunt illo.','ducimus.jpg',663,NULL,'2005-01-31 02:53:19.000','2019-06-19 18:11:58.000')
+,(2,66,'Ipsa odit ut sed et. Eos vero aut veritatis doloribus ipsam et at repellendus. Fugiat sequi sint aliquam nostrum voluptate. Omnis quaerat consequatur cum.','mollitia.jpg',66726632,NULL,'1970-10-07 22:45:18.000','2019-06-19 18:11:58.000')
+,(3,67,'Placeat aut consequatur unde sed qui voluptatum. Harum ut quasi reprehenderit nostrum et. Facilis magnam consectetur ea suscipit accusantium.','enim.jpg',213578,NULL,'2015-06-20 15:21:47.000','2019-06-19 18:11:58.000')
+,(4,68,'Quod assumenda impedit aut odio consequatur aut quisquam. In officia mollitia nobis. Non accusantium ut tempore.','iure.jpg',0,NULL,'1996-05-24 05:33:17.000','2019-06-19 18:11:58.000')
+,(1,69,'Nemo eum et placeat non et repellat consequuntur. Rem vitae rerum sed aut numquam voluptatum quia. Magni itaque rerum laboriosam saepe molestias a.','voluptas.jpg',8488,NULL,'1973-03-06 04:36:40.000','2019-06-19 18:11:58.000')
+,(2,70,'Alias qui dolores tempore est. Molestiae necessitatibus debitis nihil qui. Et molestiae voluptatem doloribus tempore enim veritatis tenetur. Consequatur qui non debitis voluptas et in soluta.','aut.jpg',96,NULL,'2001-09-09 22:19:46.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(3,71,'Ipsam velit maiores sit expedita distinctio. Nostrum corrupti similique officiis et et dolor. Quasi autem voluptas voluptas id molestias.','dicta.jpg',968311915,NULL,'1979-02-24 11:29:37.000','2019-06-19 18:11:58.000')
+,(4,72,'Natus vel est aspernatur qui velit adipisci sunt. Qui facilis cupiditate accusantium ut excepturi sequi esse. Numquam ipsam eos exercitationem qui perspiciatis. Sint quia consectetur recusandae in deserunt.','voluptate.jpg',985362,NULL,'2018-05-05 17:56:57.000','2019-06-19 18:11:58.000')
+,(1,73,'Atque et sint quam maxime. Beatae necessitatibus soluta quos qui qui explicabo aut. Cupiditate quisquam quis ab modi. Modi aut explicabo voluptates rerum ut quaerat.','modi.jpg',3,NULL,'2000-10-06 09:42:23.000','2019-06-19 18:11:58.000')
+,(2,74,'Sint nemo quasi est. Nulla vitae aut eveniet id exercitationem. Culpa eveniet neque ut minus ea eos.','possimus.jpg',17341,NULL,'1988-09-11 12:40:20.000','2019-06-19 18:11:58.000')
+,(3,75,'Sed sed ad eum commodi quam nulla perspiciatis doloremque. Corporis debitis nostrum harum consequuntur molestiae aut et. Voluptatibus in eos consequatur commodi molestiae.','eaque.jpg',778,NULL,'2012-12-31 08:29:33.000','2019-06-19 18:11:58.000')
+,(4,76,'Quisquam consequuntur deleniti rerum et dolorum sapiente voluptatem. Laudantium voluptatibus rem repudiandae omnis voluptas harum sed. Nam officiis dignissimos ut similique ipsum et architecto ullam. Ipsa illo veniam fuga ullam.','iste.jpg',6,NULL,'1998-12-20 23:58:27.000','2019-06-19 18:11:58.000')
+,(1,77,'Sequi vero nostrum sint dolores ratione aut et. Iure qui voluptas molestiae recusandae. Ut perferendis consequatur sed dolorum deleniti nobis exercitationem. Voluptas cumque laudantium aut quibusdam quia ex.','est.jpg',86,NULL,'1981-08-11 16:46:58.000','2019-06-19 18:11:58.000')
+,(2,78,'Similique sit deserunt assumenda inventore sunt dolorem. Nihil quo rerum vel assumenda. Saepe dolorum reiciendis et esse ipsam amet quod. Et nam et earum eveniet debitis et nesciunt.','omnis.jpg',8603,NULL,'1981-11-02 11:26:06.000','2019-06-19 18:11:58.000')
+,(3,79,'Sed qui ad quibusdam eaque dolores. Quia earum quis corporis non. Tempore consequatur qui a cupiditate.','ad.jpg',5346,NULL,'1996-01-26 17:47:20.000','2019-06-19 18:11:58.000')
+,(4,80,'Facilis a ducimus ad. Ipsam rerum iure assumenda veniam dolorem consequatur quasi occaecati. Aut sed est et sapiente aspernatur illo accusamus. Voluptatem asperiores quaerat sit sit.','dignissimos.jpg',58481,NULL,'1989-09-23 11:33:51.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(1,81,'Quidem et eius doloremque ratione. Qui modi ipsum est officia et dolores. Molestias porro non velit totam.','rerum.jpg',5209165,NULL,'1990-06-19 20:06:13.000','2019-06-19 18:11:58.000')
+,(2,82,'Perferendis et et enim beatae ut voluptas velit. Officiis perspiciatis sed quaerat rem. Fuga laborum quia sed amet laboriosam voluptatem.','dolores.jpg',47161319,NULL,'1974-09-03 13:54:26.000','2019-06-19 18:11:58.000')
+,(3,83,'Delectus expedita libero fuga accusamus qui. Accusantium dolores iste nihil mollitia voluptatum. Eum error repellendus suscipit quia nisi culpa ut reiciendis. Tempore et reiciendis quaerat culpa.','quos.jpg',39321,NULL,'1995-07-10 19:13:21.000','2019-06-19 18:11:58.000')
+,(4,84,'Repudiandae dolor illum est maxime sapiente aut perspiciatis. Sunt reiciendis molestiae commodi at odit est. Qui fuga voluptatibus sunt animi velit non et.','et.jpg',2,NULL,'1971-04-15 17:44:35.000','2019-06-19 18:11:58.000')
+,(1,85,'Nisi iusto cum sed quam est cupiditate. Et praesentium necessitatibus ipsam maiores expedita. Velit autem possimus et labore.','deserunt.jpg',5929496,NULL,'2004-04-29 20:55:06.000','2019-06-19 18:11:58.000')
+,(2,86,'Ea sapiente voluptatem dolores a temporibus enim. Rerum quasi quo atque modi. Autem repellendus vitae esse aspernatur iure natus reprehenderit. Quo aut fugit dolorem atque qui voluptate atque ullam.','possimus.jpg',92,NULL,'2019-02-23 20:58:44.000','2019-06-19 18:11:58.000')
+,(3,87,'Dignissimos non qui est eligendi in. Et hic ea quidem et facilis.','sint.jpg',141,NULL,'2015-08-30 07:22:54.000','2019-06-19 18:11:58.000')
+,(4,88,'Ipsa dolores voluptatem maxime rem dolores dolores. Cupiditate doloribus porro in fuga ut. Aut aut nihil repellendus nisi asperiores. Ut voluptas id in veniam voluptatem veritatis.','rem.jpg',74236435,NULL,'1971-12-03 21:35:48.000','2019-06-19 18:11:58.000')
+,(1,89,'Doloremque rerum placeat dolores ut error. Assumenda dolores voluptatem nihil consequatur et aspernatur ab. Ducimus rerum et minus doloribus at ullam.','quo.jpg',258,NULL,'1984-01-05 19:50:11.000','2019-06-19 18:11:58.000')
+,(2,90,'Aliquid rerum sit natus deserunt. Nihil sint in ut facere eum. Quibusdam magnam ut qui officia quod dolore.','odio.jpg',163,NULL,'1978-08-29 20:13:55.000','2019-06-19 18:11:58.000')
+;
+INSERT INTO media (media_type_id,user_id,body,filename,`size`,metadata,created_at,updated_at) VALUES 
+(3,91,'Laboriosam non quia et blanditiis. Nihil ut est non autem voluptatibus. Molestiae reprehenderit at est sed sint enim. Voluptatibus ex eligendi doloribus non quaerat nostrum dignissimos. Architecto in veniam laboriosam inventore beatae.','autem.jpg',1,NULL,'1988-11-12 22:11:24.000','2019-06-19 18:11:58.000')
+,(4,92,'Vero esse suscipit non quis sed temporibus. Consectetur sit vel distinctio repellendus deleniti veniam qui. Eius veritatis at tempore quia.','neque.jpg',2,NULL,'2009-05-27 09:49:55.000','2019-06-19 18:11:58.000')
+,(1,93,'Repellat delectus nulla est nulla cum. Voluptas eum aut necessitatibus sit animi illo impedit aut. Consectetur aut et excepturi porro esse. Sint praesentium autem deleniti omnis et harum vitae. Minima error dolores voluptas provident cupiditate officiis.','et.jpg',93,NULL,'1987-09-12 21:34:04.000','2019-06-19 18:11:58.000')
+,(2,94,'Tempore corrupti vel nemo doloremque quibusdam expedita. Similique sit quam quis dolorum non excepturi. Rem voluptas laborum quos voluptas vel et. Error eveniet ea cum minus nihil officia dolorum. Ullam qui voluptatem autem ut.','quisquam.jpg',5591,NULL,'1998-08-05 08:54:38.000','2019-06-19 18:11:58.000')
+,(3,95,'Labore velit ipsam et sint voluptas. Necessitatibus maxime nihil repellendus quo cupiditate. Sit ad qui nemo. Sed magnam quia eos dignissimos in quo iusto.','maiores.jpg',0,NULL,'2007-08-10 00:40:53.000','2019-06-19 18:11:58.000')
+,(4,96,'Ducimus possimus dolorem quia corrupti dolore. Omnis nam ea eum culpa distinctio ex optio aut. Voluptas non facilis quo natus corrupti perferendis. Illo rerum ut explicabo sit.','ipsum.jpg',667274,NULL,'2011-03-10 23:39:19.000','2019-06-19 18:11:58.000')
+,(1,97,'Voluptatem corrupti exercitationem nulla est itaque. Ipsum quaerat similique ut dolorum. Qui aliquid neque labore alias ut placeat.','non.jpg',62,NULL,'1996-01-18 02:10:58.000','2019-06-19 18:11:58.000')
+,(2,98,'Qui aspernatur aut sit veniam. Aliquam nisi fuga facere. Asperiores aut beatae laboriosam libero. Fugiat id perspiciatis a dolores voluptatem ad earum.','aut.jpg',801927073,NULL,'1980-01-09 06:19:44.000','2019-06-19 18:11:58.000')
+,(3,99,'Assumenda iure delectus optio blanditiis atque occaecati. Ea assumenda dolor quibusdam nemo aut. Fugiat omnis velit quod. Sequi nihil quis consequatur sit et.','est.jpg',707,NULL,'1985-07-16 10:26:38.000','2019-06-19 18:11:58.000')
+,(4,100,'Deserunt accusantium laudantium ab soluta facilis assumenda. Et temporibus ab corporis dolorum rem qui. Ipsa veritatis amet voluptas quod. Ut incidunt illo ullam fugit optio recusandae.','doloribus.jpg',4,NULL,'2011-08-04 09:10:30.000','2019-06-19 18:11:58.000')
+;
 
 DROP TABLE IF EXISTS likes;
 CREATE TABLE likes(
@@ -599,108 +577,24 @@ CREATE TABLE likes(
     user_id BIGINT UNSIGNED NOT NULL,
     media_id BIGINT UNSIGNED NOT NULL,
     created_at DATETIME DEFAULT NOW()
-    -- забыли внешние ключи: user_id, media_id
+    -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: user_id, media_id
 );
-INSERT INTO `likes` VALUES ('1','1','1','1988-10-14 18:47:39'),
-('2','2','2','1988-09-04 16:08:30'),
-('3','3','3','1994-07-10 22:07:03'),
-('4','4','4','1991-05-12 20:32:08'),
-('5','5','5','1978-09-10 14:36:01'),
-('6','6','6','1992-04-15 01:27:31'),
-('7','7','7','2003-02-03 04:56:27'),
+INSERT INTO `likes` VALUES 
+('1','1','1','1988-10-14 18:47:39'),
+('2','2','1','1988-09-04 16:08:30'),
+('3','3','1','1994-07-10 22:07:03'),
+('4','4','1','1991-05-12 20:32:08'),
+('5','5','2','1978-09-10 14:36:01'),
+('6','6','2','1992-04-15 01:27:31'),
+('7','7','2','2003-02-03 04:56:27'),
 ('8','8','8','2017-04-24 09:30:19'),
 ('9','9','9','1974-02-07 20:53:55'),
 ('10','10','10','1973-05-11 03:21:40'),
 ('11','11','11','2008-12-17 13:03:56'),
 ('12','12','12','1995-07-17 21:22:38'),
 ('13','13','13','1985-09-07 23:34:21'),
-('14','14','14','1973-01-27 23:11:53'),
-('15','15','15','2003-07-26 13:04:20'),
-('16','16','16','1980-11-21 22:17:38'),
-('17','17','17','1970-07-26 12:34:00'),
-('18','18','18','1973-10-28 18:05:14'),
-('19','19','19','2007-01-03 20:25:42'),
-('20','20','20','2000-07-18 08:04:28'),
-('21','21','21','2013-08-23 04:24:48'),
-('22','22','22','2007-11-21 00:23:39'),
-('23','23','23','1991-12-20 19:26:15'),
-('24','24','24','1995-08-15 08:20:37'),
-('25','25','25','1991-05-22 04:57:12'),
-('26','26','26','1984-03-04 03:14:59'),
-('27','27','27','1997-12-27 11:34:17'),
-('28','28','28','2002-04-05 20:20:59'),
-('29','29','29','1994-07-03 10:23:16'),
-('30','30','30','1987-08-02 12:23:44'),
-('31','31','31','1990-08-26 21:14:20'),
-('32','32','32','2001-10-09 12:21:41'),
-('33','33','33','2014-03-23 07:22:37'),
-('34','34','34','1984-06-21 14:44:42'),
-('35','35','35','2016-07-06 03:39:46'),
-('36','36','36','1976-08-08 19:28:34'),
-('37','37','37','2006-06-25 17:16:24'),
-('38','38','38','1983-08-18 20:08:51'),
-('39','39','39','1994-08-10 00:41:57'),
-('40','40','40','1983-07-02 13:46:55'),
-('41','41','41','1980-03-12 02:28:43'),
-('42','42','42','2016-02-26 23:55:09'),
-('43','43','43','2005-07-25 18:23:22'),
-('44','44','44','2015-06-02 06:03:05'),
-('45','45','45','1986-02-10 17:21:49'),
-('46','46','46','1995-04-13 23:39:41'),
-('47','47','47','2008-08-18 08:16:58'),
-('48','48','48','2015-04-15 12:50:10'),
-('49','49','49','2004-06-04 22:10:18'),
-('50','50','50','1998-02-12 14:20:07'),
-('51','51','51','1973-07-24 11:34:16'),
-('52','52','52','2018-05-26 20:54:15'),
-('53','53','53','1978-12-20 07:52:16'),
-('54','54','54','2007-04-22 15:33:44'),
-('55','55','55','1979-09-27 23:37:49'),
-('56','56','56','2014-05-13 16:49:56'),
-('57','57','57','2005-04-13 09:52:25'),
-('58','58','58','2010-08-21 18:49:25'),
-('59','59','59','1983-04-06 03:43:47'),
-('60','60','60','1984-10-17 11:22:01'),
-('61','61','61','2011-04-23 21:09:02'),
-('62','62','62','2004-03-08 21:26:14'),
-('63','63','63','2014-07-02 04:20:15'),
-('64','64','64','2018-03-03 14:09:38'),
-('65','65','65','2015-09-07 22:04:17'),
-('66','66','66','2003-06-21 17:21:54'),
-('67','67','67','1989-12-26 05:50:54'),
-('68','68','68','1987-05-25 19:25:26'),
-('69','69','69','1998-07-08 10:16:29'),
-('70','70','70','2005-02-21 17:22:04'),
-('71','71','71','2008-04-06 15:11:19'),
-('72','72','72','2012-11-26 10:23:39'),
-('73','73','73','1990-06-15 21:00:35'),
-('74','74','74','2013-01-31 06:51:53'),
-('75','75','75','2009-06-26 22:50:08'),
-('76','76','76','2004-05-24 17:22:26'),
-('77','77','77','1971-09-14 03:28:10'),
-('78','78','78','1971-05-18 01:58:40'),
-('79','79','79','2016-05-15 22:22:37'),
-('80','80','80','1998-07-04 22:37:30'),
-('81','81','81','1983-07-03 08:57:24'),
-('82','82','82','2009-08-28 08:25:04'),
-('83','83','83','1994-11-30 17:40:25'),
-('84','84','84','1978-05-18 08:59:19'),
-('85','85','85','1970-10-13 07:31:00'),
-('86','86','86','1978-04-17 13:08:12'),
-('87','87','87','1972-10-05 21:18:52'),
-('88','88','88','2016-03-20 07:13:38'),
-('89','89','89','1975-09-30 04:23:19'),
-('90','90','90','2011-05-22 19:44:27'),
-('91','91','91','2002-02-02 17:47:22'),
-('92','92','92','1983-02-09 03:26:57'),
-('93','93','93','2019-06-01 22:24:54'),
-('94','94','94','2015-04-29 10:18:49'),
-('95','95','95','1985-09-30 07:47:55'),
-('96','96','96','2000-12-14 04:45:02'),
-('97','97','97','1983-02-28 06:56:01'),
-('98','98','98','2018-04-14 23:46:36'),
-('99','99','99','2019-05-02 11:19:31'),
-('100','100','100','2007-04-26 11:11:55'); 
+('14','14','14','1973-01-27 23:11:53')
+; 
 
 DROP TABLE IF EXISTS `photo_albums`;
 CREATE TABLE `photo_albums` (
@@ -814,7 +708,7 @@ INSERT INTO `photo_albums` VALUES ('1','laborum','1'),
 DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
 	id SERIAL PRIMARY KEY,
-	`album_id` BIGINT unsigned NOT NULL,
+	`album_id` BIGINT unsigned DEFAULT NULL,
 	`media_id` BIGINT unsigned NOT NULL,
     FOREIGN KEY (album_id) REFERENCES photo_albums(id),
     FOREIGN KEY (media_id) REFERENCES media(id)

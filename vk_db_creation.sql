@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY, -- SERIAL = BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
     firstname VARCHAR(50),
-    lastname VARCHAR(50) COMMENT 'Фамиль',
+    lastname VARCHAR(50) COMMENT 'Р¤Р°РјРёР»СЊ',
     email VARCHAR(120) UNIQUE,
     phone BIGINT, 
     INDEX users_phone_idx(phone),
@@ -99,7 +99,7 @@ CREATE TABLE likes(
     user_id BIGINT UNSIGNED NOT NULL,
     media_id BIGINT UNSIGNED NOT NULL,
     created_at DATETIME DEFAULT NOW()
-    -- забыли внешние ключи: user_id, media_id
+    -- Р·Р°Р±С‹Р»Рё РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё: user_id, media_id
 );
 
 DROP TABLE IF EXISTS `photo_albums`;
@@ -114,7 +114,7 @@ CREATE TABLE `photo_albums` (
 DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
 	id SERIAL PRIMARY KEY,
-	`album_id` BIGINT unsigned NOT NULL,
+	`album_id` BIGINT unsigned DEFAULT NULL,
 	`media_id` BIGINT unsigned NOT NULL,
     FOREIGN KEY (album_id) REFERENCES photo_albums(id),
     FOREIGN KEY (media_id) REFERENCES media(id)
